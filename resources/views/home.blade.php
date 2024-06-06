@@ -1,15 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    @include('header')
+@extends('header')
+@section('title', 'Home')
 
-    <h1>Welcome</h1>
+@section('content')
+<div class="row mt-5">
+    <div class="col-6 border ms-5">
+        <h6>Berita Utama</h6>
+        @foreach ($articles as $article)
+            <a href="/detail-article?id={{$article->id}}">{{$article->title}}</a><br>
+        @endforeach
+    </div>
 
-    @include('footer')
-</body>
-</html>
+    <div class="col-4 border ms-5">
+        <h6>Berita Terpopuler</h6>
+    </div>
+</div>
+@endsection
+
+@include('footer')

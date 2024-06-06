@@ -1,24 +1,26 @@
 <?php
 use App\Http\Controllers\EditorController;
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 
-//Route::get('/', [EditorController::class,'index']);
-/* Route::get('/kategori/{kategori}', [EditorController::class,'index']);
-Route::get('/search', [EditorController::class,'']);
-Route::get('/article/{id}', [EditorController::class,'']);
-Route::get('/article/{id}', [EditorController::class,'']); */
-Route::get('/', function() {
-    return view('home');
-});
+Route::get('/', [ArticleController::class, 'home']);
 
-Route::get('/kategori', function() {
-    return view('kategori');
-});
+Route::get('/filter', [ArticleController::class, 'filter']);
+
+Route::get('/detail-article', [ArticleController::class, 'detail']);
+
+Route::get('/profile', [EditorController::class,'profile']);
+
+Route::get('/delete-article', [ArticleController::class, 'delete']);
 
 Route::get('/register', function() {
     return view('register');
 });
 
+Route::post('/register', [EditorController::class, 'register']);
+
+
+//Belum
 Route::get('/login', function() {
     return view('login');
 });
@@ -27,16 +29,8 @@ Route::get('/create-article', function() {
     return view('createArticle');
 });
 
-Route::get('/detail-article', function() {
-    return view('detailArticle');
-});
-
 Route::get('/update-article', function() {
     return view('updateArticle');
-});
-
-Route::get('/profile', function() {
-    return view('profile');
 });
 
 Route::get('/search', function() {
@@ -51,10 +45,8 @@ Route::get('/change-password', function() {
     return view('changePassword');
 });
 
-Route::post('/register', [EditorController::class, 'register']);
+Route::get('/update-article', [ArticleController::class, 'update']);
 Route::post('/login', [EditorController::class, 'login']);
 Route::patch('/change-password', [EditorController::class, 'changePassword']);
-Route::put('/update-article', [EditorController::class, 'updateArticle']);
 Route::put('/update-profile', [EditorController::class, 'updateProfile']);
-Route::post('/create-article', [EditorController::class, 'createArticle']);
-Route::delete('/delete-article', [EditorController::class, 'deleteArticle']);
+Route::post('/create-article', [EditorController::class, 'create']);

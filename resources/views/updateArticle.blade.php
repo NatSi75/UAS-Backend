@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Article</title>
-</head>
-<body>
-    @include('header')
+@extends('header')
+@section('title', 'Update Article')
+
+@section('content')
     <form method="PUT" action="/update-article">
         <label for="judul">Judul</label><br>
         <input type="text" id="judul" name="judul"><br>
@@ -16,6 +11,6 @@
         <input type="file" id="gambar" name="gambar"><br>
         <input type="submit" value="Update">
     </form>
-    @include('footer')
-</body>
-</html>
+@endsection
+
+@include('footer')

@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-<body>
-    @include('header')
-    <h1>Register</h1>
+@extends('header')
+@section('title', 'Register')
 
-    <form method="POST" action="/register">
+@section('content')
+    <form method="POST" action="/register" class="ms-1">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
         <label for="username">Username</label><br>
         <input type="text" id="username" name="username"><br>
         <label for="email">Email</label><br>
@@ -20,8 +14,8 @@
         <input type="password" id="password" name="password"><br>
         <label for="confirm_password">Confirm Password</label><br>
         <input type="password" id="confirm_password" name="confirm_password"><br>
-        <input type="submit" value="Register">
+        <input type="submit" value="Register" class="mt-1">
     </form>
-    @include('footer')
-</body>
-</html>
+@endsection
+
+@include('footer')

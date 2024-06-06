@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Article</title>
-</head>
-<body>
-    @include('header')
+@extends('header')
+@section('title', 'Detail Article')
 
-    @include('footer')
-</body>
-</html>
+@section('content')
+    {{ $article }}
+@endsection
+
+@include('footer')
+
+    

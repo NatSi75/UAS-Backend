@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Editor;
 use App\Models\Article;
+use App\Models\User;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,18 +13,18 @@ use Illuminate\Support\Facades\Hash;
 class EditorController extends Controller
 {
     public function profile() {
-        $editors = Editor::first();
+        $users = User::first();
         $articles = Article::where('editor', 'Natanael')->get();
-        return view('profile', ['editors' => $editors, 'articles'=> $articles]);
+        return view('profile', ['users' => $users, 'articles'=> $articles]);
     }
 
     public function register(Request $request): RedirectResponse
     {
-        $validatedData = new Editor;
+        $validatedData = new User;
 
         $validatedData = $request->validate([
             'username' => 'required|min:5|max:64',
-            'email' => 'required|unique:editor|max:64',
+            'email' => 'required|unique:users|max:64',
             'phone_number' => 'min:11|max:13',
             'password' => [
                 'required',
@@ -42,8 +43,8 @@ class EditorController extends Controller
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         //Membuat objek Editor untuk menyimpan datanya ke database
-        $editor = new Editor($validatedData);
-        $editor->save();
+        $user = new User($validatedData);
+        $user->save();
 
         //Redirect ke home
         return redirect('/');

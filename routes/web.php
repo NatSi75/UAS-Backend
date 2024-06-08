@@ -1,7 +1,9 @@
 <?php
 use App\Http\Controllers\EditorController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', [ArticleController::class, 'home']);
 
@@ -25,6 +27,8 @@ Route::get('/login', function() {
     return view('login');
 });
 
+Route::get('/dashboard', [DashboardController::class, 'dashboard']);
+
 Route::get('/create-article', function() {
     return view('createArticle');
 });
@@ -46,7 +50,7 @@ Route::get('/change-password', function() {
 });
 
 Route::get('/update-article', [ArticleController::class, 'update']);
-Route::post('/login', [EditorController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login']);
 Route::patch('/change-password', [EditorController::class, 'changePassword']);
 Route::put('/update-profile', [EditorController::class, 'updateProfile']);
 Route::post('/create-article', [EditorController::class, 'create']);

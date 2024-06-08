@@ -3,9 +3,9 @@
 
 @section('content')
     <div class="ms-1">
-        <p>Name : {{ $editors->username }}</p>
-        <p>Email : {{ $editors->email }}</p>
-        <p>Phone Number : {{ $editors->phone_number }}</p>
+        <p>Name : {{ $users->username }}</p>
+        <p>Email : {{ $users->email }}</p>
+        <p>Phone Number : {{ $users->phone_number }}</p>
     </div>
 
     <table class="table">

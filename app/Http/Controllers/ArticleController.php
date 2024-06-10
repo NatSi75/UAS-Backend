@@ -39,7 +39,7 @@ class ArticleController extends Controller
 
         //Redirect 
         return redirect('/');
-}
+    }
 
     public function home() {
         $articles = Article::all();
@@ -60,5 +60,15 @@ class ArticleController extends Controller
         $article = Article::where('id', $request->input('id'));
         $article->delete();
         return redirect('/profile');
+    }
+
+    public function search(Request $request) {
+        $searchTitle = $request->input('title');
+        if(empty($searchTitle)) {
+            $articles = Article::orderBy('published_at', 'asc')->get();
+        } else {
+            $articles = Article::whereRaw('title ILIKE ?', ['%' . $searchTitle . '%'])->orderBy('published_at', 'asc')->get();
+        }
+        return view('search', ['articles'=> $articles, 'searchTitle'=> $searchTitle]);
     }
 }

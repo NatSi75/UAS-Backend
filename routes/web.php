@@ -37,9 +37,7 @@ Route::get('/update-article', function() {
     return view('updateArticle');
 });
 
-Route::get('/search', function() {
-    return view('search');
-});
+Route::get('/search', [articleController::class, 'search']);
 
 Route::get('/update-profile', function() {
     return view('updateProfile');

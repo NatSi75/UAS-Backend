@@ -33,6 +33,10 @@
 <link href="{{asset('/css/bootstrap.min.css')}}" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 <nav id="nav" class="mt-3">
+    <form method="GET" action="/search" class="ms-1">
+        <input type="Text" name="title" placeholder="search...">
+        <button type="submit">-></button>
+    </form>
     <a href="/">Home</a>
     <a href="/filter?kategori=crime" class="ms-1">Crime</a>
     <a href="/filter?kategori=sport" class="ms-1">Sport</a>

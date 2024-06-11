@@ -50,5 +50,5 @@ Route::get('/change-password', function() {
 Route::get('/update-article', [ArticleController::class, 'update']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::patch('/change-password', [EditorController::class, 'changePassword']);
-Route::put('/update-profile', [EditorController::class, 'updateProfile']);
+Route::put('/update-profile', [UpdateController::class, 'updateProfile']);
 Route::post('/create-article', [ArticleController::class, 'createArticle']);

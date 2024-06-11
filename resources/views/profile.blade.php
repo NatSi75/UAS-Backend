@@ -2,10 +2,15 @@
 @section('title', 'Kategori')
 
 @section('content')
+
+    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
     <div class="ms-1">
         <p>Name : {{ $users->username }}</p>
         <p>Email : {{ $users->email }}</p>
         <p>Phone Number : {{ $users->phone_number }}</p>
+        <p>Update Profile: 
+            <button type="button" class="rounded btn btn-success" onclick="window.location.href='{{ url("/update-profile") }}'">Update Profile</button>
+        </p>    
     </div>
 
     <table class="table">

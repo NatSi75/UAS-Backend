@@ -8,7 +8,9 @@
         <label for="email">Email</label><br>
         <input type="email" id="email" name="email"><br>
         <label for="phone_number">Phone Number</label><br>
-        <input type="text" id="phone_number" name="phone_number"><br>
+        <input type="text" id="phone_number" name="phone_number"><br>   
+        <input type="submit" value="Update">
+        
     </form>
 @endsection
 

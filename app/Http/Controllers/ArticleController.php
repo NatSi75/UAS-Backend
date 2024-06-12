@@ -47,12 +47,13 @@ class ArticleController extends Controller
     }
 
     public function detail(Request $request) {
-        $article = Article::all()->where('id', $request->input('id'));
-        return view('detailArticle', ['article'=> $article]);
+        $article = Article::find($request->input('id'));
+        $articles = Article::where('category', $article->category)->get();
+        return view('detailArticle', ['article'=> $article, 'articles'=>$articles]);
     }
 
     public function filter(Request $request) {
-        $articles = Article::where('kategori', $request->input('kategori'))->get();
+        $articles = Article::where('category', $request->input('kategori'))->get();
         return view('filter', ['articles'=> $articles]);
     }
 
@@ -65,10 +66,14 @@ class ArticleController extends Controller
     public function search(Request $request) {
         $searchTitle = $request->input('title');
         if(empty($searchTitle)) {
-            $articles = Article::orderBy('published_at', 'asc')->get();
+            $articles = Article::orderBy('created_at', 'asc')->get();
         } else {
-            $articles = Article::whereRaw('title ILIKE ?', ['%' . $searchTitle . '%'])->orderBy('published_at', 'asc')->get();
+            $articles = Article::whereRaw('title ILIKE ?', ['%' . $searchTitle . '%'])->orderBy('created_at', 'asc')->get();
         }
         return view('search', ['articles'=> $articles, 'searchTitle'=> $searchTitle]);
+    }
+
+    public function update() {
+        return view('updateArticle');
     }
 }

@@ -2,27 +2,30 @@
 @section('title', 'Create Article')
 
 @section('content')
-    <form method="POST" action="/create-article" class="ms-1">
-    <style>
-        .error {
-            color: red;
-            font-size: 0.9em;
-        }
-    </style>
+<div class="container mb-5 mt-5 border rounded" style="width:1000px">
+    <h2  class="text-center">Create Article</h2>
+    <form method="POST" action="/create-article">
+        <style>
+            .error {
+                color: red;
+                font-size: 0.9em;
+            }
+        </style>
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
-        <label for="title">Judul</label><br>
-        <input type="text" id="title" name="title"><br>
+        <label class="form-label" for="title">Title</label><br>
+        <input class="form-control" type="text" id="title" name="title"><br>
         @if ($errors->has('title'))
             <div class="error">{{ $errors->first('title') }}</div>
-        @endif                                                                                                              
+        @endif
 
-        <textarea name="body" rows="15" cols="100"></textarea><br>
+        <label class="form-label" for="body">Body</label><br>
+        <textarea class="form-control" name="body" rows="10" cols="100"></textarea><br>
         @if ($errors->has('body'))
             <div class="error">{{ $errors->first('body') }}</div>
         @endif
 
-        <select class="" id="category" name="category">
+        <select class="form-control" id="category" name="category">
                 <option selected disabled>Select category</option>
                 <option value="lifestyle">Lifestyle</option>
                 <option value="crime">Crime</option>
@@ -32,16 +35,16 @@
         </select>
         @if ($errors->has('category'))
             <div class="error">{{ $errors->first('category') }}</div>
-        @endif      
-        
-        <label for="image">Gambar: </label>
-        <input type="file" id="image" name="image"><br>
+        @endif
+
+        <label class="form-label mt-2" for="image">Gambar</label>
+        <input class="form-control" type="file" id="image" name="image"><br>
         @if ($errors->has('image'))
             <div class="error">{{ $errors->first('image') }}</div>
         @endif
 
-        <input type="submit" value="Create" class="mt-1">
+        <input type="submit" value="Create" class="btn btn-primary mb-2" style="width:980px">
     </form>
-@endsection
+</div>
 
-@include('footer')
+@endsection

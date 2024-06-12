@@ -2,18 +2,35 @@
 @section('title', 'Home')
 
 @section('content')
-<div class="row mt-5">
-    <div class="col-6 border ms-5">
-        <h6>Berita Utama</h6>
-        @foreach ($articles as $article)
-            <a href="/detail-article?id={{$article->id}}">{{$article->title}}</a><br>
-        @endforeach
-    </div>
+<div class="container">
+    <div class="row mt-5">
+        <div class="card col-lg-5 p-0 ms-5">
+            <div class="card-header">Berita Utama</div>
+            @foreach ($articles as $article)
+            <div class="card mb-4">
+                <a href="/detail-article?id={{$article->id}}"><img class="img-thumbnail"" src="https://dummyimage.com/200x100/ced4da/6c757d.jpg" alt="..." /></a>
+                <div class="card-body">
+                    <div class="small text-muted">{{$article->published_at}}</div>
+                    <a href="/detail-article?id={{$article->id}}"><h6 class="card-title text-wrap">{{$article->title}}</h6></a>
+                    <span class="card-text d-inline-block text-truncate" style="max-width: 420px;"">{{$article->body}}</span><br>
+                </div>
+            </div>
+            @endforeach
+        </div>
 
-    <div class="col-4 border ms-5">
-        <h6>Berita Terpopuler</h6>
+        <div class="card col-lg-5 p-0 ms-5">
+            <div class="card-header">Berita Terpopuler</div>
+            @foreach ($articles as $article)
+            <div class="card mb-4">
+                <a href="/detail-article?id={{$article->id}}"><img class="img-thumbnail"" src="https://dummyimage.com/200x100/ced4da/6c757d.jpg" alt="..." /></a>
+                <div class="card-body">
+                    <div class="small text-muted">{{$article->published_at}}</div>
+                    <a href="/detail-article?id={{$article->id}}"><h6 class="card-title text-wrap">{{$article->title}}</h6></a>
+                    <span class="card-text d-inline-block text-truncate" style="max-width: 420px;"">{{$article->body}}</span><br>
+                </div>
+            </div>
+            @endforeach
+        </div>
     </div>
 </div>
 @endsection
-
-@include('footer')

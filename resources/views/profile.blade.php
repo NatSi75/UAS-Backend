@@ -1,4 +1,4 @@
-@extends('header')
+@extends('authheader')
 @section('title', 'Profile')
 
 @section('content')

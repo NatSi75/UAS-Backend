@@ -9,11 +9,12 @@ use Illuminate\Routing\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class EditorController extends Controller
 {
     public function profile() {
-        $users = User::first();
+        $users = Auth::user();
         $articles = Article::where('editor', 'Natanael')->get();
         return view('profile', ['users' => $users, 'articles'=> $articles]);
     }

@@ -39,12 +39,19 @@
                 <li class="nav-item mt-2 me-2"><a href="/filter?kategori=sport" class="ms-1">Sport</a></li>
                 <li class="nav-item mt-2 me-2"><a href="/filter?kategori=lifestyle" class="ms-1">Lifestyle</a></li>
                 <li class="nav-item mt-2 me-2"><a href="/filter?kategori=finance" class="ms-1">Finance</a></li>
-                <li class="nav-item mt-2 me-2"><a href="{{ url('register') }}" class="ms-1">Register</a></li>
-                <li class="nav-item mt-2 me-2"><a href="{{ url('login') }}" class="ms-1">Login</a></li>
+                <li class="nav-item mt-2 me-2"><a href="{{ url('profile') }}" class="ms-1">Profile</a></li>
                 <li class="nav-item">
                     <form method="GET" action="/search" class="d-flex pb-0" role="search">
                         <input class="form-control me-2 pt-0 pb-0 pb-0" type="Text" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success me-2" type="submit">Search</button>
+                    </form>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button class="btn btn-outline-danger" type="submit">Logout</button>
                     </form>
                 </li>
             </ul>

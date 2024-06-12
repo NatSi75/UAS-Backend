@@ -1,4 +1,4 @@
-@extends('header')
+@extends('authheader')
 
 @section('content')
 <html>

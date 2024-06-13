@@ -40,6 +40,7 @@
                 <li class="nav-item mt-2 me-2"><a href="/filter?kategori=lifestyle" class="ms-1">Lifestyle</a></li>
                 <li class="nav-item mt-2 me-2"><a href="/filter?kategori=finance" class="ms-1">Finance</a></li>
                 <li class="nav-item mt-2 me-2"><a href="{{ url('profile') }}" class="ms-1">Profile</a></li>
+                <li class="nav-item mt-2 me-2"><a href="{{ url('create-article') }}" class="ms-1">Create Article</a></li>
                 <li class="nav-item">
                     <form method="GET" action="/search" class="d-flex pb-0" role="search">
                         <input class="form-control me-2 pt-0 pb-0 pb-0" type="Text" placeholder="Search" aria-label="Search">

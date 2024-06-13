@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Article;
 use Illuminate\Routing\Controller;
@@ -13,32 +13,29 @@ class ArticleController extends Controller
 {
     public function createArticle(Request $request): RedirectResponse
     {
+        $user = Auth::user();
         $validatedData = new Article;
 
         $validatedData = $request->validate([
-            'title' => 'required|min:5|max:64',
+            'title' => 'required|min:5|max:128',
             'body' => 'required|min:5',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'category' => 'required|in:lifestyle,crime,finance,sport,miscellaneous',
         ]);
         
         //Jika artikel memiliki gambar/image
-        if ($request->hasFile('image')){
             $image = $request->file('image');
             $filename = time () .'.'. $image->getClientOriginalExtension();
             $image -> storeAs('images', $filename, 'public'); // 'public' = Nama disk dalam config > filesystems.php
             $validatedData['image'] = $filename;
-        };
-
-        //menghapus image dari array validatedData
-        unset($validatedData['image']);
 
         //Membuat objek Article untuk menyimpan datanya ke database
         $article = new Article($validatedData);
+        $article->editor = $user->username;
         $article->save();
 
         //Redirect 
-        return redirect('/');
+        return redirect('/profile');
     }
 
     public function home() {

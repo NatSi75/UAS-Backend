@@ -18,7 +18,7 @@
                     <a class="badge bg-secondary text-decoration-none link-light">{{ $article->kategori }}</a>
                 </header>
                 <!-- Preview image figure-->
-                <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/200x100/ced4da/6c757d.jpg" alt="..." /></figure>
+                <figure class="mb-4"><img class="img-fluid rounded" src="{{ URL::to('/') }}/storage/images/{{$article->image}}" alt="..." style = "height: 200px; width: 350px;"/></figure>
                 <!-- Post content-->
                 <section class="mb-5">
                     <span class="fs-5 mb-4">{{ $article->body }}</span>

@@ -4,7 +4,7 @@
 @section('content')
 <div class="container mb-5 mt-5 border rounded" style="width:1000px">
     <h2  class="text-center">Create Article</h2>
-    <form method="POST" action="/create-article">
+    <form method="POST" action="/create-article" enctype='multipart/form-data'>
         <style>
             .error {
                 color: red;

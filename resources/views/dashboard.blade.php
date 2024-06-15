@@ -1,4 +1,4 @@
-@extends('authheader')
+@extends('header')
 
 @section('content')
 <html>
@@ -7,8 +7,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     
         <title>Dashboard</title>
-
-        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
 
     </head>

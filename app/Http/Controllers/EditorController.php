@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Editor;
-use App\Models\Article;
-use App\Models\User;
+use App\Models\Editors;
+use App\Models\Articles;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,23 +13,18 @@ use Illuminate\Support\Facades\Auth;
 class EditorController extends Controller
 {
     public function profile() {
-        //Memperoleh data user yang login
-        $user = Auth::user();
-
-        //Mengambil artikel yang berkaitan dengan user
-        $articles = $user->articles;
-
-        //Menampilkan tampilan profile untuk memberikan informasi dan artikel yang pernah dibuat user yang login
-        return view('profile', ['user' => $user, 'articles'=> $articles]);
+        $editors = Auth::user();
+        $articles = Articles::where('editor', $editors->username)->get();
+        return view('profile', ['editors' => $editors, 'articles'=> $articles]);
     }
 
     public function register(Request $request): RedirectResponse
     {
-        $validatedData = new User;
+        $validatedData = new Editors;
 
         $validatedData = $request->validate([
             'username' => 'required|min:5|max:64',
-            'email' => 'required|unique:users|max:64',
+            'email' => 'required|unique:editors|max:64',
             'phone_number' => 'min:11|max:13',
             'password' => [
                 'required',
@@ -49,8 +43,8 @@ class EditorController extends Controller
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         //Membuat objek Editor untuk menyimpan datanya ke database
-        $user = new User($validatedData);
-        $user->save();
+        $editor = new Editors($validatedData);
+        $editor->save();
 
         //Redirect ke home
         return redirect('/');

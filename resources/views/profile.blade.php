@@ -2,14 +2,17 @@
 @section('title', 'Profile')
 
 @section('content')
+@php
+    $counter = 0;
+@endphp
 <div class="container mt-5 border rounded">
     <div class="container card col-lg-3 p-0">
         <div class="card-header text-center">Profile</div>
         <div class="card">
             <div class="card-body">
-            <p>Name : {{ $user->username }}</p>
-            <p>Email : {{ $user->email }}</p>
-            <p>Phone Number : {{ $user->phone_number }}</p>
+            <p>Name : {{ $editors->username }}</p>
+            <p>Email : {{ $editors->email }}</p>
+            <p>Phone Number : {{ $editors->phone_number }}</p>
             </div>
         </div>
     </div>
@@ -26,8 +29,15 @@
     </thead>
     <tbody>
         @foreach ($articles as $article)
+            @php
+                $counter++;
+            @endphp
             <tr>
-            <th scope="row">{{$article->id}}</th>
+            <th scope="row">
+                @php
+                    echo $counter
+                @endphp
+            </th>
             <td>{{$article->title}}</td>
             <td>{{$article->body}}</td>
             <td>{{$article->category}}</td>

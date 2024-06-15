@@ -4,7 +4,6 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UpdateController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardController;
 
 Route::get('/', [ArticleController::class, 'home']);
 
@@ -28,8 +27,6 @@ Route::get('/login', function() {
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 
 Route::get('/create-article', function() {
     return view('createArticle');

@@ -28,11 +28,11 @@
         @endif
 
         <select class="form-control" id="category" name="category">
-        <option value="lifestyle" {{ $article->category == 'lifestyle' ? 'selected' : '' }}>Lifestyle</option>
-            <option value="crime" {{ $article->category == 'crime' ? 'selected' : '' }}>Crime</option>
-            <option value="finance" {{ $article->category == 'finance' ? 'selected' : '' }}>Finance</option>
-            <option value="sport" {{ $article->category == 'sport' ? 'selected' : '' }}>Sport</option>
-            <option value="miscellaneous" {{ $article->category == 'miscellaneous' ? 'selected' : '' }}>Miscellaneous</option>
+            <option value="lifestyle" {{ Str::contains($article->category, 'lifestyle') ? 'selected' : '' }}>Lifestyle</option>
+            <option value="crime" {{ Str::contains($article->category, 'crime') ? 'selected' : '' }}>Crime</option>
+            <option value="finance" {{ Str::contains($article->category, 'finance') ? 'selected' : '' }}>Finance</option>
+            <option value="sport" {{ Str::contains($article->category, 'sport') ? 'selected' : '' }}>Sport</option>
+            <option value="miscellaneous" {{ Str::contains($article->category, 'miscellaneous') ? 'selected' : '' }}>Miscellaneous</option>
         </select>
         @if ($errors->has('category'))
             <div class="error">{{ $errors->first('category') }}</div>

@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
-class Editor extends Model
+class Editors extends Authenticable
 {
     use HasFactory;
+    use Notifiable;
 
-    protected $table = 'editor';
+    protected $table = 'editors';
     protected $fillable = ['username', 'email', 'phone_number', 'password'];
 }

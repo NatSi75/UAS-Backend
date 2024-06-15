@@ -10,7 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class EditorController extends Controller{
+class UpdateController extends Controller{
 public function updateProfile(ProfileUpdateRequest $request): RedirectResponse
     {
             $users = Auth::user();

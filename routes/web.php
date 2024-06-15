@@ -48,11 +48,8 @@ Route::get('/change-password', function() {
 });
 Route::patch('/change-password', [EditorController::class, 'changePassword']);
 
-Route::get('/update-article', function() {
-    return view('update-article');
-});
-Route::put('/update-article', [ArticleController::class, 'update']);
-
+Route::get('/edit-article/{article}', [ArticleController::class, 'edit'])->name('articles.edit');
+Route::put('/update-article/{article}', [ArticleController::class, 'update'])->name('articles.update');
 
 
 

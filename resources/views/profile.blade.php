@@ -7,9 +7,9 @@
         <div class="card-header text-center">Profile</div>
         <div class="card">
             <div class="card-body">
-            <p>Name : {{ $users->username }}</p>
-            <p>Email : {{ $users->email }}</p>
-            <p>Phone Number : {{ $users->phone_number }}</p>
+            <p>Name : {{ $user->username }}</p>
+            <p>Email : {{ $user->email }}</p>
+            <p>Phone Number : {{ $user->phone_number }}</p>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
             <td>{{$article->body}}</td>
             <td>{{$article->category}}</td>
             <td>
-                <a href="/update-article?id={{$article->id}}" class="btn btn-primary" role="button">Edit</a>
+                <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-primary" role="button">Edit</a>
                 <a href="/delete-article?id={{$article->id}}" class="btn btn-danger" role="button">Delete</a>
             </td>
             </tr>

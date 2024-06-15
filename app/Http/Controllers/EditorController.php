@@ -14,9 +14,14 @@ use Illuminate\Support\Facades\Auth;
 class EditorController extends Controller
 {
     public function profile() {
-        $users = Auth::user();
-        $articles = Article::where('editor', 'Natanael')->get();
-        return view('profile', ['users' => $users, 'articles'=> $articles]);
+        //Memperoleh data user yang login
+        $user = Auth::user();
+
+        //Mengambil artikel yang berkaitan dengan user
+        $articles = $user->articles;
+
+        //Menampilkan tampilan profile untuk memberikan informasi dan artikel yang pernah dibuat user yang login
+        return view('profile', ['user' => $user, 'articles'=> $articles]);
     }
 
     public function register(Request $request): RedirectResponse

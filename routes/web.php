@@ -39,7 +39,7 @@ Route::post('/create-article', [ArticleController::class, 'createArticle']);
 
 Route::post('/comment', [ArticleController::class, 'comment']);
 
-Route::get('/search', [articleController::class, 'search']);
+Route::get('/search', [ArticleController::class, 'search']);
 
 Route::get('/update-profile', function() {
     return view('updateProfile');

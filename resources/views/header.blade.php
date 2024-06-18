@@ -44,7 +44,6 @@
                     <li class="nav-item mt-2 me-2"><a href="/filter?kategori=sport" class="ms-1">Sport</a></li>
                     <li class="nav-item mt-2 me-2"><a href="/filter?kategori=lifestyle" class="ms-1">Lifestyle</a></li>
                     <li class="nav-item mt-2 me-2"><a href="/filter?kategori=finance" class="ms-1">Finance</a></li>
-                    <li class="nav-item mt-2 me-2"><a href="{{ url('profile') }}" class="ms-1">Profile</a></li>
                     <li class="nav-item mt-2 me-2"><a href="{{ url('create-article') }}" class="ms-1">Create Article</a></li>
                     <li class="nav-item">
                         <form method="GET" action="/search" class="d-flex pb-0" role="search">
@@ -54,6 +53,9 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
+                <li class="nav-item mt-2 me-2">
+                    <a href="{{ url('profile') }}" class="ms-1">{{ Auth::user()->username }}</a>
+                </li>
                     <li class="nav-item">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

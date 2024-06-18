@@ -15,16 +15,20 @@ Route::get('/profile', [EditorController::class,'profile']);
 
 Route::get('/delete-article', [ArticleController::class, 'delete']);
 
-Route::get('/register', function() {
-    return view('register');
-});
+// Menggunakan Middleware jika user sudah login 
+Route::group(['middleware' => 'guest'], function() {
+    Route::get('/register', function() {
+        return view('register');
+    });
 
-Route::post('/register', [EditorController::class, 'register']);
+    Route::post('/register', [EditorController::class, 'register']);
 
-Route::get('/login', function() {
-    return view('login');
+    Route::get('/login', function() {
+        return view('login');
+    });
+    
+    Route::post('/login', [AuthController::class, 'login']);
 });
-Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
@@ -32,6 +36,8 @@ Route::get('/create-article', function() {
     return view('createArticle');
 });
 Route::post('/create-article', [ArticleController::class, 'createArticle']);
+
+Route::post('/comment', [ArticleController::class, 'comment']);
 
 Route::get('/search', [articleController::class, 'search']);
 

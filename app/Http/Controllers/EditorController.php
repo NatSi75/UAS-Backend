@@ -49,4 +49,37 @@ class EditorController extends Controller
         //Redirect ke home
         return redirect('/');
     }
+
+    public function changePassword(Request $request) {
+        $editor = Auth::user();
+        //validator
+        $request->validate([
+            'password' => 'required',
+            'new_password' => [
+                'required',
+                'max:64',
+                'regex:/^(?=.*[A-Z])(?=.*[0-9]).{8,}$/', //(?=.*[A-Z]) untuk memastikan minimal satu huruf kapital
+                //(?=.*[0-9]) memastikan minimal mempunyai 1 angka
+                //{8,} memastikan minimal punya panjang 8 karakter
+            ],
+            'confirm_new_password' => 'required',
+        ]);
+
+        if (!Hash::check($request->password, $editor->password)) {
+            return back()->with('error', 'Wrong Password!');
+        }
+
+        if ($request->password === $request->new_password) {
+            return back()->with('error', 'Enter your new password! That is your currently password!');
+        }
+
+        if ($request->new_password !== $request->confirm_new_password) {
+            return back()->with('error', 'New Password does not match with Confirm New Password.');
+        }
+
+        $editor->password = Hash::make($request->new_password);
+        $editor->save();
+
+        return back()->with('status', 'Password Changed Succesfully!');
+    }
 }

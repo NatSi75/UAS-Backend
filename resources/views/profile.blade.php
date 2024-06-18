@@ -14,6 +14,7 @@
             <p>Email : {{ $editors->email }}</p>
             <p>Phone Number : {{ $editors->phone_number }}</p>
             <a href="/update-profile" class="btn btn-warning">Update Profile</a>
+            <a href="/change-password" class="btn btn-warning">Change Password</a>
         </div>
         </div>
     </div>

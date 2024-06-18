@@ -67,7 +67,7 @@ class ArticleController extends Controller
         if(empty($searchTitle)) {
             $articles = Articles::orderBy('created_at', 'asc')->get();
         } else {
-            $articles = Articles::whereRaw('title ILIKE ?', ['%' . $searchTitle . '%'])->orderBy('created_at', 'asc')->get();
+            $articles = Articles::where('title', 'ILIKE', '%' . $searchTitle . '%')->orderBy('created_at', 'asc')->get();
         }
         return view('search', ['articles'=> $articles, 'searchTitle'=> $searchTitle]);
     }

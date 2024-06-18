@@ -13,7 +13,8 @@
             <p>Name : {{ $editors->username }}</p>
             <p>Email : {{ $editors->email }}</p>
             <p>Phone Number : {{ $editors->phone_number }}</p>
-            </div>
+            <a href="/update-profile" class="btn btn-warning">Update Profile</a>
+        </div>
         </div>
     </div>
 

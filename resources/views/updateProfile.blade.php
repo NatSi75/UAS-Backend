@@ -4,9 +4,9 @@
 @section('content')
     <div class="container mt-5 border rounded" style="width:350px">
         <h2 class="text-center">Update Profile</h2>
-        <form method="PUT" action="/update-profile">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-
+        <form action="{{ route('update-profile') }}" method="POST">
+            @csrf
+            @method('PUT')
             <label class="form-label" for="username">Username</label><br>
             <input class="form-control form-control-sm" type="text" id="username" name="username"><br>
 

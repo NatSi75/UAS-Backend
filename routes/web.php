@@ -44,7 +44,7 @@ Route::get('/search', [articleController::class, 'search']);
 Route::get('/update-profile', function() {
     return view('updateProfile');
 });
-Route::put('/update-profile', [UpdateController::class, 'updateProfile']);
+Route::put('/update-profile', [UpdateController::class, 'updateProfile'])->name('update-profile')->middleware('auth');
 
 Route::get('/change-password', function() {
     return view('changePassword');

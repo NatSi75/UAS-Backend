@@ -2,18 +2,18 @@
 @section('title', 'Login')
 
 @section('content')
+@if (session('register'))
+    <div class="alert alert-success text-center p-0">
+        <p class="mt-2">{{session('register')}}</p>
+    </div>
+@elseif (session('error'))
+<div class="alert alert-danger text-center p-0">
+    <p class="mt-2">{{session('error')}}</p>
+</div>
+@endif
 <div class="container mt-5 border rounded" style="width:350px">
     <h2 class="text-center">Login</h2>
-    @if ($errors->any())
-        <div class="bg-red-200 p-3">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
+ 
     <form method="POST" action="/login" class="ms-1">
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
         <label class="form-label" for="email">Email</label>

@@ -13,18 +13,21 @@
         </style>
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
-        <label class="form-label" for="title">Title</label><br>
-        <input class="form-control" type="text" id="title" name="title"><br>
         @if ($errors->has('title'))
             <div class="error">{{ $errors->first('title') }}</div>
         @endif
+        <label class="form-label" for="title">Title</label><br>
+        <input class="form-control" type="text" id="title" name="title"><br>
 
-        <label class="form-label" for="body">Body</label><br>
-        <textarea class="form-control" name="body" rows="10" cols="100"></textarea><br>
         @if ($errors->has('body'))
             <div class="error">{{ $errors->first('body') }}</div>
         @endif
+        <label class="form-label" for="body">Body</label><br>
+        <textarea class="form-control" name="body" rows="10" cols="100"></textarea><br>
 
+        @if ($errors->has('category'))
+            <div class="error">{{ $errors->first('category') }}</div>
+        @endif
         <select class="form-control" id="category" name="category">
                 <option selected disabled>Select category</option>
                 <option value="lifestyle">Lifestyle</option>
@@ -33,15 +36,12 @@
                 <option value="sport">Sport</option>
                 <option value="miscellaneous">Miscellaneous</option>
         </select>
-        @if ($errors->has('category'))
-            <div class="error">{{ $errors->first('category') }}</div>
-        @endif
 
-        <label class="form-label mt-2" for="image">Gambar</label>
-        <input class="form-control" type="file" id="image" name="image"><br>
         @if ($errors->has('image'))
             <div class="error">{{ $errors->first('image') }}</div>
         @endif
+        <label class="form-label mt-2" for="image">Gambar</label>
+        <input class="form-control" type="file" id="image" name="image"><br>
 
         <input type="submit" value="Create" class="btn btn-primary mb-2" style="width:980px">
     </form>

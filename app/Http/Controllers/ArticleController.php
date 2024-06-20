@@ -36,7 +36,7 @@ class ArticleController extends Controller
         $article->save();
 
         //Redirect 
-        return redirect('/profile');
+        return redirect('/profile')->with('successCreate','Create Article Berhasil!');
     }
 
     public function home() {
@@ -59,7 +59,7 @@ class ArticleController extends Controller
     public function delete(Request $request) {
         $article = Articles::where('id', $request->input('id'));
         $article->delete();
-        return redirect('/profile');
+        return redirect('/profile')->with('deleteCreate','Delete Article Berhasil!');
     }
 
     public function search(Request $request) {
@@ -86,7 +86,7 @@ class ArticleController extends Controller
         $comment->comment = $request->input('comment');
         $comment->save();
 
-        return redirect()->back()->withInput();
+        return back();
     }
 
     public function edit(Articles $article){
@@ -123,6 +123,6 @@ class ArticleController extends Controller
        $article->update($validatedData);
 
        // Redirect user ke profile
-       return redirect('/profile');
+       return redirect('/profile')->with('updateCreate','Update Article Berhasil!');
    }
 }

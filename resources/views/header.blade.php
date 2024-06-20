@@ -8,7 +8,14 @@
 <body>
 
 <style>
-    nav div a {
+    footer {
+        z-index: 3;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    #nav div a {
         text-decoration: none;
     }
     
@@ -16,16 +23,16 @@
         text-decoration: none;
     }
 
-    nav a:link,
-    nav a:visited {
+    #nav a:link,
+    #nav a:visited {
         color: white;
     }
 
-    nav {
+    #nav {
     height: 50px;
     }
 
-    nav a:hover {
+    #nav a:hover {
         color: grey;
     }
 

@@ -2,13 +2,27 @@
 @section('title', 'Profile')
 
 @section('content')
-@php
-    $counter = 0;
-@endphp
-<div class="container mt-5 border rounded">
-    <div class="container card col-lg-3 p-0">
+@if (session('successCreate'))
+    <div class="alert alert-success text-center p-0">
+        <p class="mt-2">{{session('successCreate')}}</p>
+    </div>
+@elseif (session('deleteCreate'))
+    <div class="alert alert-success text-center p-0">
+        <p class="mt-2">{{session('deleteCreate')}}</p>
+    </div>
+@elseif (session('updateCreate'))
+    <div class="alert alert-success text-center p-0">
+        <p class="mt-2">{{session('updateCreate')}}</p>
+    </div>
+@elseif (session('updateProfile'))
+<div class="alert alert-success text-center p-0">
+    <p class="mt-2">{{session('updateProfile')}}</p>
+</div>
+@endif
+<div class="container mt-5 mb-5 border rounded">
+    <div class="container card col-lg-4 p-0">
         <div class="card-header text-center">Profile</div>
-        <div class="card">
+        <div class="card text-center">
             <div class="card-body">
             <p>Name : {{ $editors->username }}</p>
             <p>Email : {{ $editors->email }}</p>
@@ -20,36 +34,37 @@
     </div>
 
     <table class="table">
-    <thead>
+    <thead class="text-center">
         <tr>
-        <th scope="col">ID</th>
         <th scope="col">Title</th>
         <th scope="col">Body</th>
         <th scope="col">Category</th>
         <th scope="col">Action</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="text-center">
         @foreach ($articles as $article)
-            @php
-                $counter++;
-            @endphp
             <tr>
-            <th scope="row">
-                @php
-                    echo $counter
-                @endphp
-            </th>
-            <td>{{$article->title}}</td>
-            <td>{{$article->body}}</td>
-            <td>{{$article->category}}</td>
-            <td>
-                <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-primary" role="button">Edit</a>
-                <a href="/delete-article?id={{$article->id}}" class="btn btn-danger" role="button">Delete</a>
-            </td>
+                <td>
+                    <h6 style="max-width: 100px;">
+                        {{$article->title}}
+                    </h6>
+                </td>
+                <td>
+                    <p style="max-width: 700px;">
+                        {{$article->body}}
+                    </p>
+                </td>
+                <td>{{$article->category}}</td>
+                <td>
+                    <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-primary" role="button">Edit</a>
+                    <a href="/delete-article?id={{$article->id}}" class="btn btn-danger" role="button">Delete</a>
+                </td>
             </tr>
         @endforeach
     </tbody>
     </table>
+
+    {{ $articles->links() }}
 </div>
 @endsection

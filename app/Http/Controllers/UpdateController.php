@@ -27,6 +27,6 @@ public function updateProfile(Request $request): RedirectResponse
             $editors->phone_number = $request->input('phone_number');
     
             $editors->update($validatedData);
-            return redirect('/profile');
+            return redirect('/profile')->with('updateProfile','Update Profile Berhasil!');
     }
 }

@@ -14,7 +14,7 @@ class EditorController extends Controller
 {
     public function profile() {
         $editors = Auth::user();
-        $articles = Articles::where('editor', $editors->username)->get();
+        $articles = Articles::where('editor', $editors->username)->paginate(2);
         return view('profile', ['editors' => $editors, 'articles'=> $articles]);
     }
 
@@ -47,7 +47,7 @@ class EditorController extends Controller
         $editor->save();
 
         //Redirect ke home
-        return redirect('/');
+        return redirect('/login')->with('register','Register Berhasil!');
     }
 
     public function changePassword(Request $request) {
@@ -80,6 +80,6 @@ class EditorController extends Controller
         $editor->password = Hash::make($request->new_password);
         $editor->save();
 
-        return back()->with('status', 'Password Changed Succesfully!');
+        return back()->with('successChangePassword', 'Password Changed Succesfully!');
     }
 }

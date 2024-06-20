@@ -2,7 +2,7 @@
 @section('title', 'Home')
 
 @section('content')
-<div class="container">
+<div class="container mb-5">
     <div class="row mt-5">
         <div class="card col-lg-5 p-0 ms-5">
             <div class="card-header">Berita Utama</div>

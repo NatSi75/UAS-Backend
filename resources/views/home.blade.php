@@ -2,6 +2,17 @@
 @section('title', 'Home')
 
 @section('content')
+@if (session('storeComplaint'))
+    <div class="alert alert-success alert-dismissible fade show text-center" role="alert" style="max-width: 400px; margin: auto;">
+        <p class="m-0">{{ session('storeComplaint') }}</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @elseif (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show text-center" role="alert" style="max-width: 400px; margin: auto;">
+                <p class="m-0">{{ session('error') }}</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+@endif
 <div class="container mb-5">
     <div class="row mt-5">
         <div class="card col-lg-5 p-0 ms-5">

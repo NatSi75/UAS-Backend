@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Redirect;
 
-class UpdateController extends Controller{
+class UpdateController extends Controller
+{
 public function updateProfile(Request $request): RedirectResponse
     {
         $editor = Auth::user();

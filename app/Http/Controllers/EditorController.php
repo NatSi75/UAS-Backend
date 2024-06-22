@@ -25,7 +25,7 @@ class EditorController extends Controller
         $validatedData = $request->validate([
             'username' => 'required|min:5|max:64',
             'email' => 'required|unique:editors|max:64',
-            'phone_number' => 'min:11|max:13',
+            'phone_number' => 'numeric|digits_between:11,13',
             'password' => [
                 'required',
                 'max:64',

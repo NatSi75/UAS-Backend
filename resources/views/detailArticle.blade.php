@@ -12,8 +12,11 @@
                 <header class="mb-4">
                     <!-- Post title-->  
                     <h4 class="fw-bolder mb-1">{{ $article->title }}</h4>
+                   
                     <!-- Post meta content-->
-                    <div class="text-muted fst-italic mb-2">Posted on {{ \Carbon\Carbon::parse($article->updated_at)->format('D, d M Y') }} by {{ $article->editor }}</div>
+                    <div class="text-muted fst-italic mb-1">Posted on {{ \Carbon\Carbon::parse($article->updated_at)->format('D, d M Y') }} by {{ $article->editor }}</div>
+                     <!-- Post views and likes counter-->
+                     <div class="text-muted mb-2">Views: {{ $article->views }}</div>
                     <!-- Post categories-->
                     <a class="badge bg-secondary text-decoration-none link-light">{{ $article->kategori }}</a>
                 </header>

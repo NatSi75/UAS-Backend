@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
+
     public function createArticle(Request $request): RedirectResponse
     {
         $editor = Auth::user();
@@ -23,14 +24,11 @@ class ArticleController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'category' => 'required|in:lifestyle,crime,finance,sport,miscellaneous',
         ]);
-        
-        //Jika artikel memiliki gambar/image
-        $image = $request->file('image');
-        $filename = time () .'.'. $image->getClientOriginalExtension();
-        $image -> storeAs('images', $filename, 'public'); // 'public' = Nama disk dalam config > filesystems.php
-        $validatedData['image'] = $filename;
 
-        //Membuat objek Article untuk menyimpan datanya ke database
+        $image = $request->file('image');
+        $this->storeImage($image, $validatedData);
+
+        //Membuat objek Article untuk menyimpan datanya ke database 
         $article = new Articles($validatedData);
         $article->editor = $editor->username;
         $article->save();
@@ -46,6 +44,11 @@ class ArticleController extends Controller
 
     public function detail(Request $request) {
         $article = Articles::find($request->input('id'));
+
+        if ($article) {
+            $article->increment('views'); // Menambahkan views count jika ada yang mengklik artikel
+            $article->save(); // Masukkan ke database
+        }
         $articles = Articles::where('category', $article->category)->where('id', '!=', $request->input('id'))->get();
         $comments = Comments::where('article_id', $article->id)->get();
         return view('detailArticle', ['article'=> $article, 'articles'=>$articles, 'comments'=>$comments]);
@@ -99,7 +102,7 @@ class ArticleController extends Controller
    {
        //Melakukan validasi untuk data yang diterima ketika user update
        $validatedData = $request->validate([
-           'title' => 'required|min:5|max:64',
+           'title' => 'required|min:5|max:128',
            'body' => 'required|min:5',
            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
            'category' => 'required|in:lifestyle,crime,finance,sport,miscellaneous',
@@ -111,9 +114,7 @@ class ArticleController extends Controller
            Storage::disk('public')->delete('images/' . $article->image);
            //Menyimpan image baru
            $image = $request->file('image');
-           $filename = time() . '.' . $image->getClientOriginalExtension();
-           $image->storeAs('images', $filename, 'public');
-           $validatedData['image'] = $filename;
+           $this->storeImage($image, $validatedData);
        } else {
            // Jika tidak ada image baru, maka tetap menggunakan image lama
            $validatedData['image'] = $article->image;
@@ -125,4 +126,14 @@ class ArticleController extends Controller
        // Redirect user ke profile
        return redirect('/profile')->with('updateCreate','Update Article Berhasil!');
    }
+
+   public function storeImage($image, &$validatedData) {
+
+    // Save image/gambar ke dalam filename 'public' lalu mengubah nama file 
+    // yang di masukkan ke database sesuai dengan nama di 'public'
+    $filename = time () .'.'. $image->getClientOriginalExtension();
+    $image -> storeAs('images', $filename, 'public'); // 'public' = Nama disk dalam config > filesystems.php
+    $validatedData['image'] = $filename;
+}
+
 }

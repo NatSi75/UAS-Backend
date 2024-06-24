@@ -53,7 +53,57 @@ class ArticleController extends Controller
         $comments = Comments::where('article_id', $article->id)->get();
         return view('detailArticle', ['article'=> $article, 'articles'=>$articles, 'comments'=>$comments]);
     }
+    
+    public function like(Request $request)
+    {
+        $article = Articles::find($request->input('id'));
 
+        // Pastikan artikel ditemukan
+        if (!$article) {
+            return back()->with('error', 'Artikel tidak ditemukan.');
+        }
+
+        // Periksa apakah pengguna sudah memberikan feedback sebelumnya
+        if (session()->has('liked_' . $article->id)) {
+            return back()->with('error', 'Anda sudah memberikan feedback untuk artikel ini.');
+        }
+
+        // Tambahkan satu like
+        $article->increment('likes');
+
+        // Simpan session untuk menandai bahwa pengguna sudah memberikan like pada artikel ini
+        session(['liked_' . $article->id => true]);
+
+        return back()->with('success', 'Terima kasih atas feedback Anda.');
+    }
+
+    public function unlike(Request $request)
+    {
+        $article = Articles::find($request->input('id'));
+
+        // Pastikan artikel ditemukan
+        if (!$article) {
+            return back()->with('error', 'Artikel tidak ditemukan.');
+        }
+
+        // Periksa apakah pengguna sudah memberikan feedback sebelumnya
+        if (!session()->has('liked_' . $article->id)) {
+            return back()->with('error', 'Anda belum memberikan feedback untuk artikel ini.');
+        }
+
+        // Kurangi satu like
+        if ($article->likes > 0) {
+            $article->decrement('likes');
+        }
+
+        // Hapus session yang menandai bahwa pengguna memberikan like pada artikel ini
+        session()->forget('liked_' . $article->id);
+
+        return back()->with('success', 'Feedback Anda telah dihapus.');
+    }
+    
+
+    
     public function filter(Request $request) {
         $articles = Articles::where('category', $request->input('kategori'))->get();
         return view('filter', ['articles'=> $articles]);

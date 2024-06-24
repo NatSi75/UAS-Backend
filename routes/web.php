@@ -58,5 +58,8 @@ Route::put('/update-article/{article}', [ArticleController::class, 'update'])->n
 Route::get('/complaint-form', [UserController::class, 'complaint'])->name('complaint.edit');
 Route::post('/submit-complaint', [UserController::class, 'storeComplaint'])->name('complaint.submit');
 
+Route::post('/articles/like', [ArticleController::class, 'like'])->name('articles.like');
+Route::post('/articles/unlike', [ArticleController::class, 'unlike'])->name('articles.unlike');
+
 
 

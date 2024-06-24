@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Complain;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controller;
 
 class UserController extends Controller
@@ -17,7 +18,7 @@ class UserController extends Controller
     {
         $request->validate([
             'email' => 'required|email|max:64',
-            'phone_number' => 'numeric|digits_between:11,13',
+            'phone_number' => 'nullable|numeric|digits_between:11,13',
             'name' => 'required|min:5|max:64',
             'complaint' => 'required|min:5',
         ]);

@@ -1,7 +1,13 @@
 <footer class="bg-dark">
     <div class="container d-flex flex-column align-items-center">
-        <!-- Report Form Button -->
-        <a href="{{ route('complaint.edit') }}" class="text-white mb-2" style="font-size: 0.9rem; text-decoration: none; font-weight: bold;">Complaint Form</a>
+         <!--Cek apakah yang login merupakan admin(RickyDarmawan@gmail.com) atau user -->
+         @if(Auth::check() && Auth::user()->email == 'RickyDarmawan@gmail.com')
+            <!-- Jika admin yang login, maka mengarahkan addmin untuk melihat semua complaint dari user -->
+            <a href="{{ route('complaint.admin') }}" class="text-white mb-2" style="font-size: 0.9rem; text-decoration: none; font-weight: bold;">View Complaints</a>
+        @else
+            <!-- Jika user yang login, maka tampilkan form untuk complaint -->
+            <a href="{{ route('complaint.edit') }}" class="text-white mb-2" style="font-size: 0.9rem; text-decoration: none; font-weight: bold;">Complaint Form</a>
+        @endif
         <!-- Copyright Text -->
         <p class="m-0 text-white">Copyright &copy; Kelas B Kelompok 4</p>
     </div>

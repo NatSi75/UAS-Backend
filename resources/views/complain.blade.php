@@ -31,7 +31,7 @@
 
                         <div class="form-group mt-2">
                             <label for="phone_number">Phone Number</label>
-                            <input id="phone_number" type="text" class="form-control" name="phone_number" required>
+                            <input id="phone_number" type="text" class="form-control" name="phone_number">
                         </div>
                         @if ($errors->has('phone_number'))
                             <div class="error">{{ $errors->first('phone_number') }}</div>

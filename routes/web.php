@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UpdateController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ArticleController::class, 'home']);
@@ -57,6 +58,10 @@ Route::put('/update-article/{article}', [ArticleController::class, 'update'])->n
 
 Route::get('/complaint-form', [UserController::class, 'complaint'])->name('complaint.edit');
 Route::post('/submit-complaint', [UserController::class, 'storeComplaint'])->name('complaint.submit');
+
+Route::get('/complaints-view', [AdminController::class, 'viewComplaints'])->name('complaint.admin');
+Route::post('/complaints/clear/{id}', [AdminController::class, 'clearComplaint'])->name('complaint.clear');
+Route::post('/complaints/delete-all', [AdminController::class, 'deleteAllComplaints'])->name('complaint.deleteAll');
 
 Route::post('/articles/like', [ArticleController::class, 'like'])->name('articles.like');
 Route::post('/articles/unlike', [ArticleController::class, 'unlike'])->name('articles.unlike');

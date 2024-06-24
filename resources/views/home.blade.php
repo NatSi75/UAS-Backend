@@ -31,7 +31,7 @@
 
         <div class="card col-lg-5 p-0 ms-5">
             <div class="card-header">Berita Terpopuler</div>
-            @foreach ($articles as $article)
+            @foreach ($popularArticles as $article)
             <div class="card mb-4">
                 <a href="/detail-article?id={{$article->id}}"><img class="img-thumbnail" src="{{ URL::to('/') }}/storage/images/{{$article->image}}" alt="..." style = "height: 200px; width: 350px;"/></a>
                 <div class="card-body">

@@ -20,8 +20,8 @@
             <input type="submit" value="Change Password" class="btn btn-primary mb-2" style="width:345px">
         </form>
 
-        @if(session('status'))
-            <div class="alert alert-success">{{ session('status') }}</div>
+        @if(session('successChangePassword'))
+            <div class="alert alert-success">{{ session('successChangePassword') }}</div>
         @endif
 
         @if(session('error'))

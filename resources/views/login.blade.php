@@ -2,15 +2,6 @@
 @section('title', 'Login')
 
 @section('content')
-@if (session('register'))
-    <div class="alert alert-success text-center p-0">
-        <p class="mt-2">{{session('register')}}</p>
-    </div>
-@elseif (session('error'))
-<div class="alert alert-danger text-center p-0">
-    <p class="mt-2">{{session('error')}}</p>
-</div>
-@endif
 <div class="container mt-5 border rounded" style="width:350px">
     <h2 class="text-center">Login</h2>
  
@@ -29,5 +20,11 @@
 
         <button type="submit" class="rounded btn btn-primary mb-2" style="width:320px">Log in</button>
     </form>
+
+    @if (session('register'))
+        <div class="alert alert-success text-center">{{session('register')}}</div>
+    @elseif (session('error'))
+        <div class="alert alert-danger text-center">{{session('error')}}</div>
+    @endif
 </div>
 @endsection

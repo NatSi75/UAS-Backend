@@ -16,14 +16,13 @@ class UpdateController extends Controller
 {
 public function updateProfile(Request $request): RedirectResponse
     {
-        $editor = Auth::user();
         $validatedData = $request->validate([
             'username' => 'sometimes|min:5|max:64',
             'email' => 'sometimes|unique:editors|max:64',
             'phone_number' => 'sometimes|min:11|max:13',
         ]);
             $editors = Auth::user();
-            $editors->username=$request->input('name');
+            $editors->username=$request->input('username');
             $editors->email=$request->input('email');
             $editors->phone_number = $request->input('phone_number');
     

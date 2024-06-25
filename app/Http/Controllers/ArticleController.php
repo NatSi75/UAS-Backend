@@ -38,7 +38,7 @@ class ArticleController extends Controller
     }
 
     public function home() {
-        $articles = Articles::all();
+        $articles = Articles::orderBy('created_at', 'desc')->take(10)->get();
         $popularArticles =  Articles::orderBy('views', 'desc')->take(10)->get();
         $favoriteArticles =  Articles::orderBy('likes', 'desc')->take(10)->get();
         return view('home', compact('articles', 'popularArticles', 'favoriteArticles'));

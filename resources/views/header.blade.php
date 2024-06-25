@@ -53,8 +53,8 @@
                     <li class="nav-item mt-2 me-2"><a href="/filter?kategori=finance" class="ms-1">Finance</a></li>
                     <li class="nav-item mt-2 me-2"><a href="{{ url('create-article') }}" class="ms-1">Create Article</a></li>
                     <li class="nav-item">
-                        <form method="GET" action="/search" class="d-flex pb-0" role="search">
-                            <input class="form-control me-2 pt-0 pb-0 pb-0" type="Text" placeholder="Search" name="title" aria-label="Search">
+                        <form method="GET" action="/search" class="d-flex pb-0">
+                            <input class="form-control me-2 pt-0 pb-0 pb-0" type="text" placeholder="Search" id="title" name="title">
                             <button class="btn btn-outline-success me-2" type="submit">Search</button>
                         </form>
                     </li>
@@ -85,7 +85,7 @@
                     <li class="nav-item mt-2 me-2"><a href="/filter?kategori=finance" class="ms-1">Finance</a></li>
                     <li class="nav-item">
                         <form method="GET" action="/search" class="d-flex pb-0" role="search">
-                            <input class="form-control me-2 pt-0 pb-0 pb-0" type="Text" placeholder="Search" aria-label="Search">
+                            <input class="form-control me-2 pt-0 pb-0 pb-0" type="text" name="title" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success me-2" type="submit">Search</button>
                         </form>
                     </li>
